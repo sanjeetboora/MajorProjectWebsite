@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Cantarell|Capriola|Fresca|Josefin+Slab" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <script type="text/javascript" src="app/assets/javascripts/jquery.noty.packaged.min.js"></script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -18,7 +19,16 @@
   </head>
 
   <body>
-
+  <% if notice %>
+    <script type="text/javascript">
+        noty({text: '<%= notice %>', type: 'alert', timeout: 3500, progressBar: true});
+    </script>
+  <% end %>
+  <% if alert %>
+    <script type="text/javascript">
+        noty({text: '<%= alert %>', type: 'error',timeout: 3500, progressBar: true});
+    </script>
+  <% end %>
   <div class="ui menu">
     <nav>
       <div class="nav-wrapper grey darken-3">
@@ -32,8 +42,8 @@
       </div>
     </nav>
   </div>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <p class="notice" style="color: #fff; background-color: red; "><%= notice %></p>
+  <p class="alert" style="color: #fff; background-color: red;"><%= alert %></p>
 
   <%= yield %>
   </body>
